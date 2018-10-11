@@ -1,12 +1,9 @@
-import ajax from '../Utils/ajax';
-
 const TweetsReducer=(state=[],action)=>{
   switch (action.type) {
-    case 'TWEETS':
-    console.log(action.tweets.data);
-    return [...state,{tweets:action.tweets.data}];
+    case 'ALL_TWEETS':
+    return action.tweets;
     default:
-    return state;
+    return 'empty';
   }
 }
 

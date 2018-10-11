@@ -19,12 +19,12 @@ const SignUpReducer=(state=[],action)=>{
         }
       })
       .then(user => {
-        alert(user.message || JSON.stringify(user));
+        //alert(user.message || JSON.stringify(user));
       })
       .catch(err => {
         alert(err.message || JSON.stringify(err));
       })
-    return state;
+    return 'signedUp';
     default:
     return state;
   }

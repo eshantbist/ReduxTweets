@@ -5,8 +5,8 @@ import {signUp} from '../actions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-const height=Dimensions.get('window').height;
-const newHeight=height/8;
+// const height=Dimensions.get('window').height;
+// const newHeight=height/8;
 class SignUp extends Component {
   state = {
     username:'',
@@ -21,6 +21,7 @@ class SignUp extends Component {
   signUp=()=>{
     const {username,password,email,phone_number}=this.state;
     this.props.signUp(username,password,email,phone_number);
+    alert("Hurray!! You Signed Up");
   }
 
 
@@ -71,7 +72,10 @@ class SignUp extends Component {
             onChangeText={value => this.onChangeText('email',value)}
             style={styles.input}
           />
-          <Button title='Sign Up' onPress={()=>this.signUp()} />
+          <TouchableOpacity onPress={()=>this.signUp()} style={{padding:10,alignItems:'center',backgroundColor:'#039BE5'}} >
+            <Text style={{fontWeight:'900',fontSize:16,color:'white'}}>Sign Up</Text>
+          </TouchableOpacity>
+          {/*<Button title='Sign Up' onPress={()=>this.signUp()} />*/}
         </ScrollView>
       </View>
     );
@@ -82,12 +86,16 @@ const mapDispatchToProps=(dispatch)=>{
   return bindActionCreators({signUp},dispatch)
 }
 
-export default connect(null,mapDispatchToProps)(SignUp);
+const mapStateToProps=(state)=>{
+  return{signedUp:state.SignUpReducer};
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(SignUp);
 
 const styles = StyleSheet.create({
   container: {
-    marginTop:newHeight,
-    backgroundColor: '#F5FCFF',
+    // marginTop:newHeight,
+    top:50,
   },
   input: {
     height: 50,

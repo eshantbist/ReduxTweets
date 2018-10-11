@@ -7,9 +7,11 @@ import SignUp from '../containers/SignUp'
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
 import {createStackNavigator,createSwitchNavigator} from "react-navigation";
 import TweetList from './TweetList';
+import TweetDetail from './TweetDetail';
 
 const AppStack = createStackNavigator({
     TweetList: { screen: TweetList },
+    TweetDetail: { screen: TweetDetail },
   },
   {
     headerMode: 'none',

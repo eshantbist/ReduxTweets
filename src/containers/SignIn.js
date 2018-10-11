@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {ScrollView,Modal,TouchableOpacity,Button,TextInput,Platform, StyleSheet, Text, View} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {signIn} from '../actions';
+import {tweets} from '../actions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
@@ -18,15 +19,15 @@ class SignIn extends Component {
   signIn=()=>{
     // this.props.signIn(this.state.username,this.state.password);
     // console.log(this.props.authenticated);
-    // console.log('after action')
     var authenticated=true;
     if(authenticated){
+      this.props.tweets();
       this.props.navigation.navigate('App');
     }
   }
 
   show=()=>{
-    console.log(this.props.authenticated);
+    alert('You Will Soon Get This Feature :)');
   }
 
   render() {
@@ -45,8 +46,14 @@ class SignIn extends Component {
             secureTextEntry={ true }
             style={styles.input}
           />
-          <Button title='Sign In' onPress={()=>this.signIn()}/>
-          <Button title='Forgot Password??' onPress={()=>this.show()} />
+          {/*<Button title='Sign In' onPress={()=>this.signIn()} color={'white'} style={{color:'red'}}/>*/}
+          <TouchableOpacity onPress={()=>this.signIn()} style={{padding:10,alignItems:'center',backgroundColor:'#039BE5'}} >
+            <Text style={{fontWeight:'900',fontSize:16,color:'white'}}>SIGN IN</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={()=>this.show()} style={{marginVertical:20,padding:10,alignItems:'center',backgroundColor:'#039BE5'}} >
+            <Text style={{fontWeight:'900',fontSize:16,color:'white'}}>Forgot Password??</Text>
+          </TouchableOpacity>
+          {/*<Button title='Forgot Password??' onPress={()=>this.show()} />*/}
         </ScrollView>
       </View>
     );
@@ -54,7 +61,7 @@ class SignIn extends Component {
 }
 
 const mapDispatchToProps=(dispatch)=>{
-  return bindActionCreators({signIn},dispatch);
+  return bindActionCreators({signIn,tweets},dispatch);
 }
 
 const mapStateToProps=(state)=>{
@@ -64,8 +71,7 @@ export default connect(mapStateToProps,mapDispatchToProps)(SignIn);
 
 const styles = StyleSheet.create({
   container: {
-    marginTop:100,
-    backgroundColor: '#F5FCFF',
+    top:80,
   },
   input: {
     height: 50,
